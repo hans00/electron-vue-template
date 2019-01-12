@@ -1,0 +1,63 @@
+{
+  "name": "%project_name%",
+  "description": "%description%",
+  "version": "0.0.0",
+  "build": {
+    "productName": "%product_name%",
+    "appId": "%app_id%",
+    "mac": {
+      "icon": "icons/mac/icon.icns"
+    },
+    "win": {
+      "icon": "icons/win/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "category": "Science",
+      "icon": "icons/png",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "npm run compile && electron-builder",
+    "dist:wl": "npm run compile && electron-builder -wl",
+    "dist:win": "npm run compile && electron-builder --win",
+    "dist:mac": "npm run compile && electron-builder --mac",
+    "dist:linux": "npm run compile && electron-builder --linux",
+    "dist:dir": "npm run dist --dir -c.compression=store -c.mac.identity=null",
+    "postinstall": "npm run rebuild-deps",
+    "rebuild-deps": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.9"
+  },
+  "devDependencies": {
+    "electron": "3.0.10",
+    "electron-builder": "^20.36.2",
+    "electron-webpack": "^2.6.1",
+#if eslint#    "electron-webpack-eslint": "^4.0.0",#endif#
+    "electron-webpack-vue": "^2.2.2",
+#if eslint#    "eslint-plugin-html": "^5.0.0",#endif#
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "vue": "^2.5.22",
+    "webpack": "^4.26.0"
+  }
+}
