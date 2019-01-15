@@ -1,5 +1,3 @@
-const execSync = require('child_process').execSync
-
 exports.questions = [
 	{
 		type: 'input',
@@ -28,7 +26,8 @@ exports.questions = [
 ];
 
 exports.preprocess = function (answer) {
+	const rimraf = require('rimraf');
 	if (!answer.eslint) {
-		execSync('rm -rf .eslintrc.js')
+		rimraf('./.eslintrc.js');
 	}
 }
