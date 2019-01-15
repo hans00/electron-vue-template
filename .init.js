@@ -25,9 +25,8 @@ exports.questions = [
 	}
 ];
 
-exports.preprocess = function (answer) {
-	const rimraf = require('rimraf');
+exports.preprocess = function (answer, module) {
 	if (!answer.eslint) {
-		rimraf('./.eslintrc.js');
+		module.rm('./.eslintrc.js');
 	}
 }
